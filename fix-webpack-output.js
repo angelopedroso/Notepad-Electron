@@ -4,7 +4,13 @@ const path = require('path')
 
 async function fixWebpackOutput() {
   const webpackDir = path.resolve(__dirname, '.webpack')
-  const sourceMain = path.join(webpackDir, 'x64', 'main')
+
+  const archFolder = process.arch === 'arm64' ? 'arm64' : 'x64'
+
+  // Se for necessário tratar outros casos (como 'arm' em Linux), você pode adicionar condições:
+  // const archFolder = process.arch.startsWith('arm') ? process.arch : 'x64';
+
+  const sourceMain = path.join(webpackDir, archFolder, 'main')
   const targetMain = path.join(webpackDir, 'main')
 
   if (!(await fs.pathExists(sourceMain))) {
@@ -15,6 +21,7 @@ async function fixWebpackOutput() {
   await fs.remove(targetMain)
 
   await fs.copy(sourceMain, targetMain)
+  console.log(`Arquivos copiados de ${sourceMain} para ${targetMain}`)
 }
 
 fixWebpackOutput().catch((err) => {
