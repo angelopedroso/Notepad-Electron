@@ -1,0 +1,33 @@
+{
+  "appId": "com.rotion.app",
+  "productName": "Rotion",
+  "directories": {
+    "output": "dist"
+  },
+  "win": {
+    "target": "nsis",
+    "artifactName": "Rotion-Setup.exe",
+    "icon": "resources/icon.ico"
+  },
+  "nsis": {
+    "oneClick": false,
+    "allowToChangeInstallationDirectory": true,
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true,
+    "installerIcon": "resources/icon.ico",
+    "uninstallerIcon": "resources/icon.ico",
+    "uninstallDisplayName": "Rotion"
+  },
+  "mac": {
+    "target": "dmg",
+    "icon": "resources/icon.icns"
+  },
+  "linux": {
+    "target": "AppImage"
+  },
+  "files": [
+    "**/*",
+    "!out/**"
+  ],
+  "asar": null
+}
