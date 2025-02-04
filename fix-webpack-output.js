@@ -2,39 +2,23 @@
 const fs = require('fs')
 const path = require('path')
 
-const webpackDir = path.resolve(__dirname, '.webpack')
-const sourceDir = path.join(webpackDir, 'x64')
-const targetMain = path.join(webpackDir, 'main')
-const targetRenderer = path.join(webpackDir, 'renderer')
+async function copyMainFolder() {
+  const webpackDir = path.resolve(__dirname, '.webpack')
+  const sourceMain = path.join(webpackDir, 'x64', 'main')
+  const targetMain = path.join(webpackDir, 'main')
 
-function createOrReplaceSymlink(source, target) {
-  try {
-    if (fs.existsSync(target)) {
-      fs.rmSync(target, { recursive: true, force: true })
-    }
-    fs.symlinkSync(source, target, 'junction')
-  } catch (error) {
-    console.error(`Erro ao criar o link de ${target} para ${source}:`, error)
+  if (!(await fs.pathExists(sourceMain))) {
+    console.error(`Pasta de origem não encontrada: ${sourceMain}`)
     process.exit(1)
   }
+
+  await fs.remove(targetMain)
+
+  await fs.copy(sourceMain, targetMain)
+  console.log(`Arquivos copiados de ${sourceMain} para ${targetMain}`)
 }
 
-if (!fs.existsSync(sourceDir)) {
-  console.error(`Pasta de origem não encontrada: ${sourceDir}`)
+copyMainFolder().catch((err) => {
+  console.error('Erro ao copiar pasta main:', err)
   process.exit(1)
-}
-
-const sourceMain = path.join(sourceDir, 'main')
-if (fs.existsSync(sourceMain)) {
-  createOrReplaceSymlink(sourceMain, targetMain)
-} else {
-  console.error(`Pasta main não encontrada em: ${sourceMain}`)
-  process.exit(1)
-}
-
-const sourceRenderer = path.join(sourceDir, 'renderer')
-if (fs.existsSync(sourceRenderer)) {
-  createOrReplaceSymlink(sourceRenderer, targetRenderer)
-} else {
-  console.warn(`Pasta renderer não encontrada em: ${sourceRenderer}`)
-}
+})
