@@ -8,7 +8,6 @@
     "target": "nsis",
     "artifactName": "Rotion-Setup.exe",
     "icon": "resources/icon.ico",
-    "provider": "github",
     "publish": ["github"]
   },
   "nsis": {
