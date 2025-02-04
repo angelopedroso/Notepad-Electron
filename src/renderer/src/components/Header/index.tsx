@@ -1,11 +1,13 @@
 import clsx from 'clsx'
-import { Code, CaretDoubleRight, TrashSimple } from 'phosphor-react'
+import { Code, CaretDoubleRight, TrashSimple, Printer } from 'phosphor-react'
 
 import * as Collapsible from '@radix-ui/react-collapsible'
 import * as Breadcrumbs from './Breadcrumbs'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Document } from '~/src/shared/types/ipc'
+import { use } from 'react'
+import { EditorContext } from '../../contexts/editor-context'
 
 interface HeaderProps {
   isSidebarOpen: boolean
@@ -13,6 +15,9 @@ interface HeaderProps {
 
 export function Header({ isSidebarOpen }: HeaderProps) {
   const { id } = useParams<{ id: string }>()
+
+  const editor = use(EditorContext)
+
   const queryClient = useQueryClient()
   const navigate = useNavigate()
 
@@ -29,6 +34,17 @@ export function Header({ isSidebarOpen }: HeaderProps) {
         })
 
         navigate('/')
+      },
+    })
+
+  const { mutateAsync: printDocument, isPending: isPrintingDocument } =
+    useMutation({
+      mutationFn: async () => {
+        const htmlContent = editor.HTMLContent
+
+        if (htmlContent) {
+          await window.api.printHTML(htmlContent)
+        }
       },
     })
 
@@ -68,7 +84,15 @@ export function Header({ isSidebarOpen }: HeaderProps) {
             <Breadcrumbs.Item isActive>Untitled</Breadcrumbs.Item>
           </Breadcrumbs.Root>
 
-          <div className="inline-flex region-no-drag">
+          <div className="inline-flex region-no-drag gap-3">
+            <button
+              className="inline-flex items-center gap-1 text-rotion-100 text-sm hover:text-rotion-50"
+              onClick={() => printDocument()}
+              disabled={isPrintingDocument}
+            >
+              <Printer className="size-4" />
+              Imprimir
+            </button>
             <button
               onClick={() => deleteDocument()}
               disabled={isDeletingDocument}

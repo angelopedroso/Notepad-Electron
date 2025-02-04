@@ -6,4 +6,8 @@ export const IPC = {
     SAVE: 'documents: save',
     DELETE: 'documents: delete',
   },
+  PRINT: {
+    PRINT_HTML: 'print: print-html',
+    SAVE_PDF: 'print: save-as-pdf',
+  },
 }

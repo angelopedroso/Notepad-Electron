@@ -6,6 +6,8 @@ import Placeholder from '@tiptap/extension-placeholder'
 import Document from '@tiptap/extension-document'
 import TaskList from '@tiptap/extension-task-list'
 import TaskItem from '@tiptap/extension-task-item'
+import { use } from 'react'
+import { EditorContext } from '../../contexts/editor-context'
 
 export interface OnContentUpdatedParams {
   title: string
@@ -18,6 +20,8 @@ interface EditorProps {
 }
 
 export function Editor({ content, onContentUpdated }: EditorProps) {
+  const { setHTMLContent } = use(EditorContext)
+
   const editor = useEditor({
     extensions: [
       Document.extend({
@@ -50,15 +54,22 @@ export function Editor({ content, onContentUpdated }: EditorProps) {
       const content = parsedContent?.content ?? ''
 
       onContentUpdated({ title, content })
+      setHTMLContent(editor.getHTML())
+    },
+    onCreate({ editor }) {
+      setHTMLContent(editor.getHTML())
     },
     content,
     autofocus: 'end',
     editorProps: {
       attributes: {
-        class: 'focus:outline-none prose prose-invert prose-headings:mt-0',
+        class:
+          'focus:outline-none prose prose-invert prose-headings:mt-0 h-full',
       },
     },
   })
 
-  return <EditorContent className="w-[55ch] xl:w-[65ch]" editor={editor} />
+  return (
+    <EditorContent className="w-[55ch] xl:w-[65ch] h-full" editor={editor} />
+  )
 }

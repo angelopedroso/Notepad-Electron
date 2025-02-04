@@ -40,6 +40,13 @@ const api = {
       ipcRenderer.off('new-document', callback)
     }
   },
+
+  printHTML(htmlContent: string): Promise<void> {
+    return ipcRenderer.invoke(IPC.PRINT.PRINT_HTML, htmlContent)
+  },
+  saveAsPDF(htmlContent: string): Promise<void> {
+    return ipcRenderer.invoke(IPC.PRINT.SAVE_PDF, htmlContent)
+  },
 }
 
 if (process.contextIsolated) {
