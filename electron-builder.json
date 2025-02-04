@@ -1,6 +1,15 @@
 {
   "appId": "com.rotion.app",
   "productName": "Rotion",
+  "githubRepository": "angelopedroso/Notepad-Electron",
+  "publish": [
+    {
+      "provider": "github",
+      "owner": "angelopedroso",
+      "repo": "Notepad-Electron",
+      "token": "${GH_TOKEN}"
+    }
+  ],
   "directories": {
     "output": "dist"
   },
