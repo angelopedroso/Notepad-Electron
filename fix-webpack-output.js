@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const fs = require('fs')
+const fs = require('fs-extra')
 const path = require('path')
 
-async function copyMainFolder() {
+async function fixWebpackOutput() {
   const webpackDir = path.resolve(__dirname, '.webpack')
   const sourceMain = path.join(webpackDir, 'x64', 'main')
   const targetMain = path.join(webpackDir, 'main')
@@ -15,10 +15,9 @@ async function copyMainFolder() {
   await fs.remove(targetMain)
 
   await fs.copy(sourceMain, targetMain)
-  console.log(`Arquivos copiados de ${sourceMain} para ${targetMain}`)
 }
 
-copyMainFolder().catch((err) => {
+fixWebpackOutput().catch((err) => {
   console.error('Erro ao copiar pasta main:', err)
   process.exit(1)
 })

@@ -38,3 +38,6 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
           release: true
+
+      - name: Listar estrutura .webpack
+        run: ls -R .webpack

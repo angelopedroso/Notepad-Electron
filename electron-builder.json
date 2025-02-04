@@ -1,6 +1,9 @@
 {
   "appId": "com.rotion.app",
   "productName": "Rotion",
+  "extraMetadata": {
+    "main": ".webpack/x64/main"
+  },
   "directories": {
     "output": "dist"
   },
