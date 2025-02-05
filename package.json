@@ -4,6 +4,10 @@
   "version": "1.1.14.2",
   "description": "Note your notes with Rotion",
   "main": ".webpack/main",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/angelopedroso/Notepad-Electron.git"
+  },
   "scripts": {
     "start": "electron-forge start",
     "package:forge": "electron-forge package",
