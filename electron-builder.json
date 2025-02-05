@@ -2,7 +2,8 @@
   "appId": "com.rotion.app",
   "productName": "Rotion",
   "publish": [{
-    "provider": "github"
+    "provider": "github",
+    "releaseType": "release"
   }],
   "directories": {
     "output": "dist"
