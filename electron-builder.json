@@ -1,14 +1,16 @@
 {
   "appId": "com.rotion.app",
   "productName": "Rotion",
+  "publish": [{
+    "provider": "github"
+  }],
   "directories": {
     "output": "dist"
   },
   "win": {
     "target": "nsis",
     "artifactName": "Rotion-Setup.exe",
-    "icon": "resources/icon.ico",
-    "publish": ["github"]
+    "icon": "resources/icon.ico"
   },
   "nsis": {
     "oneClick": false,
