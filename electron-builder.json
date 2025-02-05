@@ -29,7 +29,8 @@
   },
   "files": [
     "**/*",
-    "!dist/**/*-unpacked"
+    "!dist/**/*-unpacked",
+    "!out/**"
   ],
   "asar": true
 }

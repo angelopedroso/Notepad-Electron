@@ -17,9 +17,7 @@ if (require('electron-squirrel-startup')) {
   app.quit()
 }
 
-updateElectronApp({
-  updateInterval: '6 hour',
-})
+updateElectronApp()
 
 const createWindow = (): void => {
   // Create the browser window.
