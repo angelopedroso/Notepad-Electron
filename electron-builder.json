@@ -18,8 +18,7 @@
     "createDesktopShortcut": true,
     "createStartMenuShortcut": true,
     "installerIcon": "resources/icon.ico",
-    "uninstallerIcon": "resources/icon.ico",
-    "uninstallDisplayName": "Rotion"
+    "uninstallerIcon": "resources/icon.ico"
   },
   "mac": {
     "target": "dmg",
@@ -30,8 +29,7 @@
   },
   "files": [
     "**/*",
-    "!dist/**/*-unpacked",
-    "!out/**"
+    "!dist/**/*-unpacked"
   ],
-  "asar": null
+  "asar": true
 }
