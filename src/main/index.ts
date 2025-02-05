@@ -21,6 +21,7 @@ updateElectronApp()
 
 const createWindow = (): void => {
   // Create the browser window.
+  console.log('object')
   const mainWindow = new BrowserWindow({
     width: 900,
     height: 670,
