@@ -12,7 +12,7 @@ export function getFullHTML(content: string) {
             }
 
             body {
-              font-family: Inter, sans-serif;
+              font-family: Inter, Arial, sans-serif;
               font-size: 16px;
               line-height: 1.5;
               color: black;

@@ -87,10 +87,12 @@ ipcMain.handle(IPC.PRINT.PRINT_HTML, (event, htmlContent) => {
     'data:text/html;charset=utf-8,' + encodeURIComponent(fullHTML),
   )
 
-  tmpWindow.webContents.print({}, (success, failureReason) => {
-    if (!success) console.error('Falha ao imprimir:', failureReason)
-    tmpWindow?.close()
-    tmpWindow = null
+  tmpWindow.webContents.on('did-finish-load', () => {
+    tmpWindow?.webContents.print({}, (success, failureReason) => {
+      if (!success) console.error('Falha ao imprimir:', failureReason)
+      tmpWindow?.close()
+      tmpWindow = null
+    })
   })
 })
 
