@@ -2,7 +2,7 @@ import { app, BrowserWindow, ipcMain } from 'electron'
 import { randomUUID } from 'node:crypto'
 import fs from 'node:fs'
 import path from 'node:path'
-import { IPC } from '@shared/constants/ipc'
+import { IPC } from '@/shared/constants/ipc'
 import {
   CreateDocumentResponse,
   DeleteDocumentRequest,
@@ -11,7 +11,7 @@ import {
   FetchDocumentRequest,
   FetchDocumentResponse,
   SaveDocumentRequest,
-} from '@shared/types/ipc'
+} from '@/shared/types/ipc'
 import { store } from './store'
 import { getFullHTML } from '../shared/constants/html-template'
 

@@ -13,19 +13,66 @@ export function getFullHTML(content: string) {
 
             body {
               font-family: Inter, Arial, sans-serif;
-              font-size: 16px;
-              line-height: 1.5;
-              color: black;
-              background: white;
-              width: 100%;
-              max-width: 800px;
-              margin: auto;
-              padding: 20px;
+              overflow: hidden
             }
 
             h1 {
+              margin-block-start: 20px;
+              font-size: 36px;
+              font-weight: 800; 
+              letter-spacing: -0.025em; 
+            }
+
+            h2 {
+              margin-block-start: 20px; 
+              border-bottom: 1px solid currentColor;
+              padding-bottom: 0.5rem;
+              font-size: 30px;
+              font-weight: 600;
+              letter-spacing: -0.025em;
+            }
+
+            h2:first-child {
+              margin-top: 0;
+            }
+
+            h3 {
+              margin-block-start: 20px;
               font-size: 24px;
-              margin-bottom: 10px;
+              font-weight: 600;
+              letter-spacing: -0.025em;
+            }
+              
+            h4 {
+              margin-block-start: 20px;
+              font-size: 20px;
+              font-weight: 600;
+              letter-spacing: -0.025em;
+            }
+
+            p {
+              line-height: 1.75rem;
+            }
+
+            p:not(:first-child) {
+              margin-top: 1.5rem;
+            }
+
+            blockquote {
+              margin-top: 1.5rem; /* mt-6 */
+              border-left: 2px solid currentColor; /* border-l-2 */
+              padding-left: 1.5rem; /* pl-6 */
+              font-style: italic; /* italic */
+            }
+
+            ul {
+              margin-block: 1.5rem;
+              margin-left: 1.5rem;
+              list-style-type: disc; 
+            }
+
+            ul > li {
+              margin-top: 0.5rem;
             }
 
             p, li {
@@ -33,11 +80,6 @@ export function getFullHTML(content: string) {
               overflow-wrap: break-word;
               white-space: normal;
               max-width: 100%;
-              margin-bottom: 5px;
-            }
-
-            ul {
-              padding-left: 20px;
             }
             
             .custom-task-item {
@@ -45,11 +87,19 @@ export function getFullHTML(content: string) {
               gap: 8px;
               align-items: center;
             }
+
+            #container {
+              width: 100%;
+              display: flex;
+              flex-direction: column;        
+            }
           }
         </style>
       </head>
       <body>
-        ${content}
+        <div id="container">
+          ${content}
+        </div>
       </body>
     </html>
   `

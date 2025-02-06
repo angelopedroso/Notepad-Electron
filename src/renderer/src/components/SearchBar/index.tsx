@@ -38,21 +38,21 @@ export function SearchBar({ open, onOpenChange }: SearchBarProps) {
 
   return (
     <Command.Dialog
-      className="fixed top-24 left-1/2 -translate-x-1/2 w-[480px] max-w-full bg-rotion-800 rounded-md shadow-2xl text-rotion-100 border border-rotion-600"
+      className="fixed top-24 left-1/2 -translate-x-1/2 w-[480px] max-w-full bg-card rounded-md shadow-2xl text-rotion-100 border border-border"
       open={open}
       onOpenChange={onOpenChange}
       label="Search"
     >
-      <div className="flex items-center gap-2 border-b border-rotion-700 p-4">
+      <div className="flex items-center gap-2 border-b border-border p-4">
         <MagnifyingGlass className="w-5 h-5" />
         <Command.Input
           autoFocus
           placeholder="Buscar documentos..."
-          className="w-full bg-transparent focus:outline-none text-sm text-rotion-50 placeholder:text-rotion-200"
+          className="w-full bg-transparent focus:outline-none text-sm text-primary placeholder:text-foreground"
         />
       </div>
-      <Command.List className="py-2 max-h-48 scrollbar-thin scrollbar-thumb-rotion-600 scrollbar-track-rotion-800">
-        <Command.Empty className="py-3 px-4 text-rotion-200 text-sm">
+      <Command.List className="py-2 max-h-48 scrollbar-thin scrollbar-thumb-border scrollbar-track-card">
+        <Command.Empty className="py-3 px-4 text-foreground text-sm">
           Nenhum documento encontrado.
         </Command.Empty>
 
@@ -61,7 +61,7 @@ export function SearchBar({ open, onOpenChange }: SearchBarProps) {
             <Command.Item
               key={document.id}
               onSelect={() => handleOpenDocument(document.id)}
-              className="py-3 px-4 text-rotion-50 text-sm flex items-center gap-2 hover:bg-rotion-700 aria-selected:!bg-rotion-600"
+              className="py-3 px-4 text-primary text-sm flex items-center gap-2 hover:bg-rotion-700 aria-selected:!bg-border"
             >
               <File className="w-4 h-4" />
               {document.title}

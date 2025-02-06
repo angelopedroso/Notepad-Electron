@@ -8,6 +8,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Document } from '~/src/shared/types/ipc'
 import { use } from 'react'
 import { EditorContext } from '../../contexts/editor-context'
+import { queryClient } from '../../lib/react-query'
 
 interface HeaderProps {
   isSidebarOpen: boolean
@@ -17,9 +18,6 @@ export function Header({ isSidebarOpen }: HeaderProps) {
   const { id } = useParams<{ id: string }>()
 
   const editor = use(EditorContext)
-
-  const queryClient = useQueryClient()
-  const navigate = useNavigate()
 
   const isMacOS = process.platform === 'darwin'
 
@@ -51,7 +49,7 @@ export function Header({ isSidebarOpen }: HeaderProps) {
   return (
     <div
       className={clsx(
-        'border-b border-rotion-600 h-14 py-[1.125rem] px-6 flex items-center gap-4 leading-tight transition-all duration-250',
+        'border-b border-border h-14 py-[1.125rem] px-6 flex items-center gap-4 leading-tight transition-all duration-250',
         {
           'pl-24': !isSidebarOpen && isMacOS,
           'w-screen': !isSidebarOpen,
@@ -61,10 +59,13 @@ export function Header({ isSidebarOpen }: HeaderProps) {
       )}
     >
       <Collapsible.Trigger
-        className={clsx('h-5 w-5 text-rotion-200 hover:text-rotion-50', {
-          hidden: isSidebarOpen,
-          block: !isSidebarOpen,
-        })}
+        className={clsx(
+          'h-5 w-5 text-foreground hover:text-accent-foreground',
+          {
+            hidden: isSidebarOpen,
+            block: !isSidebarOpen,
+          },
+        )}
       >
         <CaretDoubleRight className="h-4 w-4" />
       </Collapsible.Trigger>
@@ -86,7 +87,7 @@ export function Header({ isSidebarOpen }: HeaderProps) {
 
           <div className="inline-flex region-no-drag gap-3">
             <button
-              className="inline-flex items-center gap-1 text-rotion-100 text-sm hover:text-rotion-50"
+              className="inline-flex items-center gap-1 text-rotion-100 text-sm hover:text-accent-foreground"
               onClick={() => printDocument()}
               disabled={isPrintingDocument}
             >
@@ -96,7 +97,7 @@ export function Header({ isSidebarOpen }: HeaderProps) {
             <button
               onClick={() => deleteDocument()}
               disabled={isDeletingDocument}
-              className="inline-flex items-center gap-1 text-rotion-100 text-sm hover:text-rotion-50"
+              className="inline-flex items-center gap-1 text-rotion-100 text-sm hover:text-accent-foreground"
             >
               <TrashSimple className="h-4 w-4" />
               Apagar

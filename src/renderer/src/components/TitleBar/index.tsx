@@ -6,7 +6,7 @@ export function TitleBar() {
   return (
     <div
       className={clsx(
-        'w-full mr-auto min-h-8 text-rotion-200 select-none region-drag',
+        'w-full mr-auto min-h-8 text-foreground select-none region-drag',
         { hidden: isMacOS, flex: !isMacOS },
       )}
     ></div>
