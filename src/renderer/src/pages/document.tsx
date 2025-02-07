@@ -14,7 +14,7 @@ export function Document() {
   const { data, isFetching } = useQuery({
     queryKey: ['documents', id],
     queryFn: async () => {
-      const response = await window.api.fetchDocument({ id: id! })
+      const response = await window.api.document.fetchDocument({ id: id! })
 
       return response.data
     },
@@ -22,7 +22,7 @@ export function Document() {
 
   const { mutateAsync: saveDocument } = useMutation({
     mutationFn: async ({ title, content }: OnContentUpdatedParams) => {
-      await window.api.saveDocument({
+      await window.api.document.saveDocument({
         id: id!,
         title,
         content,

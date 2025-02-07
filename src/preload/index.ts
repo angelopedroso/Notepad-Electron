@@ -3,6 +3,7 @@ import { contextBridge } from 'electron'
 import { document } from './api/documents'
 import { print } from './api/print'
 import { trash } from './api/trash'
+import { updater } from './api/update'
 
 declare global {
   export interface Window {
@@ -11,7 +12,7 @@ declare global {
 }
 
 // Custom APIs for renderer
-const api = Object.assign({}, document, trash, print)
+const api = { document, trash, print, update: updater }
 
 if (process.contextIsolated) {
   try {

@@ -12,7 +12,7 @@ export function CreatePage() {
   const { mutateAsync: createDocument, isPending: isCreatingNewDocument } =
     useMutation({
       mutationFn: async () => {
-        const response = await window.api.createDocument()
+        const response = await window.api.document.createDocument()
 
         return response.data
       },
@@ -30,7 +30,7 @@ export function CreatePage() {
       createDocument()
     }
 
-    const unsubscribe = window.api.onNewDocumentRequest(onNewDocument)
+    const unsubscribe = window.api.document.onNewDocumentRequest(onNewDocument)
 
     return () => {
       unsubscribe()

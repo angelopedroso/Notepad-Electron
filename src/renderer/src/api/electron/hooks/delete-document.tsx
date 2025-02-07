@@ -11,7 +11,7 @@ export function useDeleteDocument(id: string) {
   const { mutateAsync: deleteDocument, isPending: isDeletingDocument } =
     useMutation({
       mutationFn: async () => {
-        await window.api.deleteDocument({ id })
+        await window.api.document.deleteDocument({ id })
       },
       onSuccess() {
         queryClient.setQueryData<Document[]>(['documents'], (documents) => {

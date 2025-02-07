@@ -28,7 +28,7 @@ export function Header({ isSidebarOpen }: HeaderProps) {
         const htmlContent = editor.HTMLContent
 
         if (htmlContent) {
-          await window.api.printHTML(htmlContent)
+          await window.api.print.printHTML(htmlContent)
         }
       },
     })

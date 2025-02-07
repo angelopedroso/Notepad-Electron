@@ -14,7 +14,7 @@ export function SearchBar({ open, onOpenChange }: SearchBarProps) {
   const { data } = useQuery({
     queryKey: ['documents'],
     queryFn: async () => {
-      const response = await window.api.fetchDocuments()
+      const response = await window.api.document.fetchDocuments()
 
       return response.data
     },
