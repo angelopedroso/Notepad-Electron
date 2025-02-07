@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 @layer base {
   :root {
     --background: 256 22% 10%;
@@ -15,7 +17,7 @@
     --card: 256 22% 13%;
     --card-foreground: 255 7% 65%;
     --primary: 260 8% 92%;
-    --primary-foreground: 210 40% 98%;
+    --primary-foreground: 256 22% 17%;
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 260 8% 92%;
     --accent: 256 21% 22%;
