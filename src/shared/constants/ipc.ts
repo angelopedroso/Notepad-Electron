@@ -6,6 +6,11 @@ export const IPC = {
     SAVE: 'documents: save',
     DELETE: 'documents: delete',
   },
+  TRASH: {
+    FETCH_ALL: 'trash: fetch-all',
+    RESTORE: 'trash: restore',
+    DELETE: 'trash: delete',
+  },
   PRINT: {
     PRINT_HTML: 'print: print-html',
     SAVE_PDF: 'print: save-as-pdf',

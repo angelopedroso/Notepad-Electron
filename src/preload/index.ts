@@ -1,4 +1,5 @@
 import { contextBridge, ipcRenderer } from 'electron'
+
 import { IPC } from '@/shared/constants/ipc'
 import {
   CreateDocumentResponse,
@@ -7,7 +8,13 @@ import {
   FetchDocumentRequest,
   FetchDocumentResponse,
   SaveDocumentRequest,
-} from '@/shared/types/ipc'
+} from '~/src/shared/types/ipc/documents'
+
+import {
+  DeleteTrashRequest,
+  FetchAllTrashesResponse,
+  RestoreDocumentFromTrashRequest,
+} from '../shared/types/ipc/trash'
 
 declare global {
   export interface Window {
@@ -39,6 +46,18 @@ const api = {
     return () => {
       ipcRenderer.off('new-document', callback)
     }
+  },
+
+  fetchTrashes(): Promise<FetchAllTrashesResponse> {
+    return ipcRenderer.invoke(IPC.TRASH.FETCH_ALL)
+  },
+  restoreDocumentFromTrash(
+    req: RestoreDocumentFromTrashRequest,
+  ): Promise<void> {
+    return ipcRenderer.invoke(IPC.TRASH.RESTORE, req)
+  },
+  deleteTrash(req: DeleteTrashRequest): Promise<void> {
+    return ipcRenderer.invoke(IPC.TRASH.DELETE, req)
   },
 
   printHTML(htmlContent: string): Promise<void> {

@@ -3,7 +3,7 @@ import { Editor, OnContentUpdatedParams } from '../components/Editor'
 import { ToC } from '../components/ToC'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useMemo } from 'react'
-import { Document as DocumentType } from '~/src/shared/types/ipc'
+import { Document as DocumentType } from '~/src/shared/types/ipc/documents'
 
 export function Document() {
   const { id } = useParams<{ id: string }>()
