@@ -1,5 +1,7 @@
-import { BrowserWindow, Menu, nativeTheme, Tray } from 'electron'
 import path from 'node:path'
+
+import { BrowserWindow, Menu, nativeTheme, Tray } from 'electron'
+
 import { trayEvents } from './events'
 
 export function createTray(window: BrowserWindow) {

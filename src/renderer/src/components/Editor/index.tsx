@@ -1,12 +1,13 @@
-import { EditorContent, useEditor } from '@tiptap/react'
-import Highlight from '@tiptap/extension-highlight'
-import StarterKit from '@tiptap/starter-kit'
-import Typography from '@tiptap/extension-typography'
-import Placeholder from '@tiptap/extension-placeholder'
 import Document from '@tiptap/extension-document'
-import TaskList from '@tiptap/extension-task-list'
+import Highlight from '@tiptap/extension-highlight'
+import Placeholder from '@tiptap/extension-placeholder'
 import TaskItem from '@tiptap/extension-task-item'
+import TaskList from '@tiptap/extension-task-list'
+import Typography from '@tiptap/extension-typography'
+import { EditorContent, useEditor } from '@tiptap/react'
+import StarterKit from '@tiptap/starter-kit'
 import { use } from 'react'
+
 import { EditorContext } from '../../contexts/editor-context'
 
 export interface OnContentUpdatedParams {

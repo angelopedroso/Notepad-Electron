@@ -1,13 +1,12 @@
-import clsx from 'clsx'
-
 import * as Collapsible from '@radix-ui/react-collapsible'
+import { useQuery } from '@tanstack/react-query'
+import clsx from 'clsx'
 import { CaretDoubleLeft } from 'phosphor-react'
 
-import * as Navigation from './Navigation'
 import { CreatePage } from './CreatePage'
+import * as Navigation from './Navigation'
 import { Profile } from './Profile'
 import { Search } from './Search'
-import { useQuery } from '@tanstack/react-query'
 
 export function Sidebar() {
   const isMacOS = process.platform === 'darwin'

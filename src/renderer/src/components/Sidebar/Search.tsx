@@ -1,6 +1,7 @@
 import { MagnifyingGlass } from 'phosphor-react'
-import { SearchBar } from '../SearchBar'
 import { useState } from 'react'
+
+import { SearchBar } from '../SearchBar'
 
 export function Search() {
   const [isSearchBarOpen, setIsSearchBarOpen] = useState(false)

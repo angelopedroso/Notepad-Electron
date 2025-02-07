@@ -1,13 +1,13 @@
-import clsx from 'clsx'
-import { Code, CaretDoubleRight, TrashSimple, Printer } from 'phosphor-react'
-
 import * as Collapsible from '@radix-ui/react-collapsible'
-import * as Breadcrumbs from './Breadcrumbs'
-import { useParams } from 'react-router-dom'
 import { useMutation } from '@tanstack/react-query'
+import clsx from 'clsx'
+import { CaretDoubleRight, Code, Printer, TrashSimple } from 'phosphor-react'
 import { use } from 'react'
-import { EditorContext } from '../../contexts/editor-context'
+import { useParams } from 'react-router-dom'
+
 import { useDeleteDocument } from '../../api/electron/hooks/delete-document'
+import { EditorContext } from '../../contexts/editor-context'
+import * as Breadcrumbs from './Breadcrumbs'
 
 interface HeaderProps {
   isSidebarOpen: boolean

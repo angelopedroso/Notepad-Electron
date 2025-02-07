@@ -1,9 +1,9 @@
-import { Outlet } from 'react-router-dom'
 import * as Collapsible from '@radix-ui/react-collapsible'
-
 import { useState } from 'react'
-import { Sidebar } from '../../components/Sidebar'
+import { Outlet } from 'react-router-dom'
+
 import { Header } from '../../components/Header'
+import { Sidebar } from '../../components/Sidebar'
 import { EditorProvider } from '../../contexts/editor-context'
 
 export function Default() {

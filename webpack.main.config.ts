@@ -1,9 +1,9 @@
+import CopyWebpackPlugin from 'copy-webpack-plugin'
+import { TsconfigPathsPlugin } from 'tsconfig-paths-webpack-plugin'
 import type { Configuration } from 'webpack'
 
-import { rules } from './webpack.rules'
 import { plugins } from './webpack.plugins'
-import { TsconfigPathsPlugin } from 'tsconfig-paths-webpack-plugin'
-import CopyWebpackPlugin from 'copy-webpack-plugin'
+import { rules } from './webpack.rules'
 
 export const mainConfig: Configuration = {
   entry: './src/main/index.ts',
