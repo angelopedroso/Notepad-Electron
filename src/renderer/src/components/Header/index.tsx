@@ -3,12 +3,11 @@ import { Code, CaretDoubleRight, TrashSimple, Printer } from 'phosphor-react'
 
 import * as Collapsible from '@radix-ui/react-collapsible'
 import * as Breadcrumbs from './Breadcrumbs'
-import { useNavigate, useParams } from 'react-router-dom'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { Document } from '~/src/shared/types/ipc'
+import { useParams } from 'react-router-dom'
+import { useMutation } from '@tanstack/react-query'
 import { use } from 'react'
 import { EditorContext } from '../../contexts/editor-context'
-import { queryClient } from '../../lib/react-query'
+import { useDeleteDocument } from '../../api/electron/hooks/delete-document'
 
 interface HeaderProps {
   isSidebarOpen: boolean
@@ -21,19 +20,7 @@ export function Header({ isSidebarOpen }: HeaderProps) {
 
   const isMacOS = process.platform === 'darwin'
 
-  const { mutateAsync: deleteDocument, isPending: isDeletingDocument } =
-    useMutation({
-      mutationFn: async () => {
-        await window.api.deleteDocument({ id: id! })
-      },
-      onSuccess() {
-        queryClient.setQueryData<Document[]>(['documents'], (documents) => {
-          return documents?.filter((document) => document.id !== id)
-        })
-
-        navigate('/')
-      },
-    })
+  const { deleteDocument, isDeletingDocument } = useDeleteDocument(id!)
 
   const { mutateAsync: printDocument, isPending: isPrintingDocument } =
     useMutation({
