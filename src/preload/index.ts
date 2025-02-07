@@ -1,20 +1,8 @@
-import { contextBridge, ipcRenderer } from 'electron'
+import { contextBridge } from 'electron'
 
-import { IPC } from '@/shared/constants/ipc'
-import {
-  CreateDocumentResponse,
-  DeleteDocumentRequest,
-  FetchAllDocumentsResponse,
-  FetchDocumentRequest,
-  FetchDocumentResponse,
-  SaveDocumentRequest,
-} from '~/src/shared/types/ipc/documents'
-
-import {
-  DeleteTrashRequest,
-  FetchAllTrashesResponse,
-  RestoreDocumentFromTrashRequest,
-} from '../shared/types/ipc/trash'
+import { document } from './api/documents'
+import { print } from './api/print'
+import { trash } from './api/trash'
 
 declare global {
   export interface Window {
@@ -23,50 +11,7 @@ declare global {
 }
 
 // Custom APIs for renderer
-const api = {
-  fetchDocuments(): Promise<FetchAllDocumentsResponse> {
-    return ipcRenderer.invoke(IPC.DOCUMENTS.FETCH_ALL)
-  },
-  fetchDocument(req: FetchDocumentRequest): Promise<FetchDocumentResponse> {
-    return ipcRenderer.invoke(IPC.DOCUMENTS.FETCH, req)
-  },
-  createDocument(): Promise<CreateDocumentResponse> {
-    return ipcRenderer.invoke(IPC.DOCUMENTS.CREATE)
-  },
-  saveDocument(req: SaveDocumentRequest): Promise<void> {
-    return ipcRenderer.invoke(IPC.DOCUMENTS.SAVE, req)
-  },
-  deleteDocument(req: DeleteDocumentRequest): Promise<void> {
-    return ipcRenderer.invoke(IPC.DOCUMENTS.DELETE, req)
-  },
-
-  onNewDocumentRequest(callback: () => void) {
-    ipcRenderer.on('new-document', callback)
-
-    return () => {
-      ipcRenderer.off('new-document', callback)
-    }
-  },
-
-  fetchTrashes(): Promise<FetchAllTrashesResponse> {
-    return ipcRenderer.invoke(IPC.TRASH.FETCH_ALL)
-  },
-  restoreDocumentFromTrash(
-    req: RestoreDocumentFromTrashRequest,
-  ): Promise<void> {
-    return ipcRenderer.invoke(IPC.TRASH.RESTORE, req)
-  },
-  deleteTrash(req: DeleteTrashRequest): Promise<void> {
-    return ipcRenderer.invoke(IPC.TRASH.DELETE, req)
-  },
-
-  printHTML(htmlContent: string): Promise<void> {
-    return ipcRenderer.invoke(IPC.PRINT.PRINT_HTML, htmlContent)
-  },
-  saveAsPDF(htmlContent: string): Promise<void> {
-    return ipcRenderer.invoke(IPC.PRINT.SAVE_PDF, htmlContent)
-  },
-}
+const api = Object.assign({}, document, trash, print)
 
 if (process.contextIsolated) {
   try {
