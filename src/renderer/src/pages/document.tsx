@@ -5,7 +5,6 @@ import { useParams } from 'react-router-dom'
 import { Document as DocumentType } from '~/src/shared/types/ipc/documents'
 
 import { Editor, OnContentUpdatedParams } from '../components/Editor'
-import { ToC } from '../components/ToC'
 
 export function Document() {
   const { id } = useParams<{ id: string }>()
@@ -58,28 +57,12 @@ export function Document() {
 
   return (
     <main className="flex-1 flex py-12 px-10 gap-8 overflow-hidden">
-      <aside className="hidden lg:block sticky top-0">
-        <span className="text-rotion-300 font-semibold text-xs">
-          TABLE OF CONTENTS
-        </span>
-
-        <ToC.Root>
-          <ToC.Link>Back-end</ToC.Link>
-          <ToC.Section>
-            <ToC.Link>Banco de dados</ToC.Link>
-            <ToC.Link>Autenticação</ToC.Link>
-          </ToC.Section>
-        </ToC.Root>
-      </aside>
-
-      <section className="no-scroll flex-1 flex flex-col items-center overflow-y-auto p-4">
-        {!isFetching && data && (
-          <Editor
-            content={initialContent}
-            onContentUpdated={handleEditorContentUpdated}
-          />
-        )}
-      </section>
+      {!isFetching && data && (
+        <Editor
+          content={initialContent}
+          onContentUpdated={handleEditorContentUpdated}
+        />
+      )}
     </main>
   )
 }

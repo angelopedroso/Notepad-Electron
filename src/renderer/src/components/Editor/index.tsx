@@ -6,9 +6,15 @@ import TaskList from '@tiptap/extension-task-list'
 import Typography from '@tiptap/extension-typography'
 import { EditorContent, useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
-import { use } from 'react'
+import TableOfContents, {
+  getHierarchicalIndexes,
+  TableOfContentData,
+} from '@tiptap-pro/extension-table-of-contents'
+import { use, useState } from 'react'
 
 import { EditorContext } from '../../contexts/editor-context'
+import { ToC } from '../ToC'
+import { Separator } from '../ui/separator'
 
 export interface OnContentUpdatedParams {
   title: string
@@ -22,6 +28,8 @@ interface EditorProps {
 
 export function Editor({ content, onContentUpdated }: EditorProps) {
   const { setHTMLContent } = use(EditorContext)
+
+  const [tocItems, setToCItems] = useState<TableOfContentData>()
 
   const editor = useEditor({
     extensions: [
@@ -45,9 +53,15 @@ export function Editor({ content, onContentUpdated }: EditorProps) {
         emptyEditorClass:
           'before:content-[attr(data-placeholder)] before:text-gray-500 before:h-0 before:float-left before:pointer-events-none',
       }),
+      TableOfContents.configure({
+        getIndex: getHierarchicalIndexes,
+        onUpdate(data) {
+          setToCItems(data)
+        },
+      }),
     ],
     onUpdate({ editor }) {
-      const contentRegex = /(<h1>(?<title>.+)<\/h1>(?<content>.+)?)/
+      const contentRegex = /<h1[^>]*>(?<title>.+?)<\/h1>(?<content>.+)?/
 
       const parsedContent = editor.getHTML().match(contentRegex)?.groups
 
@@ -71,6 +85,20 @@ export function Editor({ content, onContentUpdated }: EditorProps) {
   })
 
   return (
-    <EditorContent className="w-[55ch] xl:w-[65ch] h-full" editor={editor} />
+    <>
+      <aside className="hidden basis-1/5 lg:block sticky top-0">
+        <span className="text-rotion-300 font-semibold text-xs">
+          TABLE OF CONTENTS
+        </span>
+
+        <ToC editor={editor} items={tocItems} />
+      </aside>
+
+      <Separator orientation="vertical" className="hidden lg:block" />
+
+      <section className="no-scroll basis-4/5 flex-1 flex flex-col items-center overflow-y-auto py-4">
+        <EditorContent className="size-full w-[55ch]" editor={editor} />
+      </section>
+    </>
   )
 }
