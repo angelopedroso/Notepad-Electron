@@ -19,6 +19,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Set up npm authentication for TipTap
+        run: |
+          echo "@tiptap-pro:registry=https://registry.tiptap.dev/" > ~/.npmrc
+          echo "//registry.tiptap.dev/:_authToken=${{ secrets.TIPTAP_PRO_TOKEN }}" >> ~/.npmrc
+
       - name: Install Node.js, NPM and Yarn
         uses: actions/setup-node@v3
         with:
