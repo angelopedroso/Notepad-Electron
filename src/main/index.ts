@@ -1,8 +1,10 @@
 import './ipc'
 import './store'
 
-import { app, BrowserWindow, dialog } from 'electron'
+import { app, BrowserWindow } from 'electron'
 import { autoUpdater } from 'electron-updater'
+
+import trayIcon from '~/resources/icon.png'
 
 import { createWindowEvents } from './events'
 import { createShortcuts } from './shortcuts'
@@ -18,6 +20,8 @@ declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string
 if (require('electron-squirrel-startup')) {
   app.quit()
 }
+
+app.setAppUserModelId('Rotion')
 
 const createWindow = (): void => {
   const mainWindow = new BrowserWindow({
@@ -40,7 +44,7 @@ const createWindow = (): void => {
       x: 20,
       y: 20,
     },
-    ...(process.platform !== 'darwin' ? { icon: '../resources/icon.png' } : {}),
+    ...(process.platform !== 'darwin' ? { icon: trayIcon } : {}),
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
       contextIsolation: true,
@@ -56,10 +60,9 @@ const createWindow = (): void => {
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY)
 
   autoUpdater.autoInstallOnAppQuit = true
-  autoUpdater.checkForUpdatesAndNotify()
+  autoUpdater.checkForUpdates()
 }
 
-app.setAppUserModelId('Rotion')
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
