@@ -36,7 +36,7 @@ export function Header({ isSidebarOpen }: HeaderProps) {
   return (
     <div
       className={clsx(
-        'border-b border-border h-14 py-[1.125rem] px-6 flex items-center gap-4 leading-tight transition-all duration-250',
+        'border-b border-border h-14 py-[1.125rem] px-6 flex items-center justify-end gap-4 leading-tight transition-all duration-250',
         {
           'pl-24': !isSidebarOpen && isMacOS,
           'w-screen': !isSidebarOpen,
