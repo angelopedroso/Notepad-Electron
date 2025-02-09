@@ -58,39 +58,24 @@ export function Header({ isSidebarOpen }: HeaderProps) {
       </Collapsible.Trigger>
 
       {id && (
-        <>
-          <Breadcrumbs.Root>
-            <Breadcrumbs.Item>
-              <Code weight="bold" className="h-4 w-4 text-pink-500" />
-              Estrutura técnica
-            </Breadcrumbs.Item>
-            <Breadcrumbs.Separator />
-            <Breadcrumbs.HiddenItems />
-            <Breadcrumbs.Separator />
-            <Breadcrumbs.Item>Back-end</Breadcrumbs.Item>
-            <Breadcrumbs.Separator />
-            <Breadcrumbs.Item isActive>Untitled</Breadcrumbs.Item>
-          </Breadcrumbs.Root>
-
-          <div className="inline-flex region-no-drag gap-3">
-            <button
-              className="inline-flex items-center gap-1 text-rotion-100 text-sm hover:text-accent-foreground"
-              onClick={() => printDocument()}
-              disabled={isPrintingDocument}
-            >
-              <Printer className="size-4" />
-              Imprimir
-            </button>
-            <button
-              onClick={() => deleteDocument()}
-              disabled={isDeletingDocument}
-              className="inline-flex items-center gap-1 text-rotion-100 text-sm hover:text-accent-foreground"
-            >
-              <TrashSimple className="h-4 w-4" />
-              Apagar
-            </button>
-          </div>
-        </>
+        <div className="inline-flex region-no-drag gap-3">
+          <button
+            className="inline-flex items-center gap-1 text-rotion-100 text-sm hover:text-accent-foreground"
+            onClick={() => printDocument()}
+            disabled={isPrintingDocument}
+          >
+            <Printer className="size-4" />
+            Imprimir
+          </button>
+          <button
+            onClick={() => deleteDocument()}
+            disabled={isDeletingDocument}
+            className="inline-flex items-center gap-1 text-rotion-100 text-sm hover:text-accent-foreground"
+          >
+            <TrashSimple className="h-4 w-4" />
+            Apagar
+          </button>
+        </div>
       )}
     </div>
   )
