@@ -1,7 +1,7 @@
 import { BrowserWindow, ipcMain, Notification } from 'electron'
 import { autoUpdater } from 'electron-updater'
 
-import trayIcon from '~/resources/icon.png';
+import trayIcon from '~/resources/icon.png'
 
 export function createUpdater(window: BrowserWindow) {
   autoUpdater.on('update-available', (info) => {
@@ -10,11 +10,10 @@ export function createUpdater(window: BrowserWindow) {
       closeButtonText: 'Fechar',
       title: 'Uma nova versão está disponível!',
       body: `A versão ${info.version} já está disponível 🤩, atualize para ver as novidades!`,
-    }).show();
+    }).show()
   })
 
   autoUpdater.on('update-downloaded', (e) => {
-
     window.webContents.send('update-downloaded', {
       name: e.releaseName,
       version: e.version,
