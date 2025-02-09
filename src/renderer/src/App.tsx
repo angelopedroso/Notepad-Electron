@@ -4,6 +4,7 @@ import { QueryClientProvider } from '@tanstack/react-query'
 
 import { Routes } from '../routes'
 import { TitleBar } from './components/TitleBar'
+import { Toaster } from './components/ui/sonner'
 import { queryClient } from './lib/react-query'
 
 export function App() {
@@ -13,6 +14,7 @@ export function App() {
         <TitleBar />
         <Routes />
       </div>
+      <Toaster />
     </QueryClientProvider>
   )
 }
