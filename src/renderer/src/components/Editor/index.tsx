@@ -88,7 +88,7 @@ export function Editor({ content, onContentUpdated }: EditorProps) {
     <>
       <aside className="hidden basis-1/5 lg:block sticky top-0">
         <span className="text-rotion-300 font-semibold text-xs">
-          TABLE OF CONTENTS
+          TABELA DE CONTEÚDO
         </span>
 
         <ToC editor={editor} items={tocItems} />
