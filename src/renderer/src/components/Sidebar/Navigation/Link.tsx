@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import { DotsThree, TrashSimple } from 'phosphor-react'
 import { ReactNode } from 'react'
-import { NavLink, useParams } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 import { useDeleteDocument } from '../../../api/electron/hooks/delete-document'
 import {
@@ -22,12 +22,11 @@ import {
 
 interface LinkProps {
   to: string
+  id: string
   children: ReactNode
 }
 
-export function Link({ children, to }: LinkProps) {
-  const { id } = useParams<{ id: string }>()
-
+export function Link({ children, to, id }: LinkProps) {
   const { deleteDocument, isDeletingDocument } = useDeleteDocument(id!)
 
   return (
