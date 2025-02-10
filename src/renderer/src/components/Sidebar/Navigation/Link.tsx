@@ -35,7 +35,7 @@ export function Link({ children, to, id }: LinkProps) {
         to={to}
         className={({ isActive }) =>
           clsx(
-            'flex w-full items-center text-sm gap-2 text-rotion-100 group-hover/link:text-accent-foreground',
+            'flex w-11/12 items-center text-sm gap-2 text-rotion-100 group-hover/link:text-accent-foreground',
             {
               'active bg-rotion-700': isActive,
             },
@@ -44,7 +44,7 @@ export function Link({ children, to, id }: LinkProps) {
       >
         <span className="truncate flex-1">{children}</span>
       </NavLink>
-      <div className="flex items-center h-full group-hover:visible text-rotion-100">
+      <div className="flex items-center invisible h-full group-hover/link:visible text-rotion-100">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <button className="px-px rounded-sm hover:bg-rotion-500">
